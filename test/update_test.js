@@ -30,4 +30,16 @@ describe('Updating records', () => {
     // update() is deprecated
     assertName(joe.updateOne({ name: 'Alex' }), done)
   })
+
+  it('A model class can update', (done) => {
+    assertName(User.updateOne({ name: 'Joe' }, { name: 'Alex' }), done)
+  })
+
+  it('A model class can update one record', (done) => {
+    assertName(User.findOneAndUpdate({ name: 'Joe' }, { name: 'Alex' }), done)
+  })
+
+  it('A model class can find a record with an Id and update', (done) => {
+    assertName(User.findByIdAndUpdate(joe._id, { name: 'Alex' }), done)
+  })
 })
