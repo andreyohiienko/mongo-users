@@ -13,6 +13,7 @@ describe('Reading users out of the database', () => {
   it('should find all users with a name of joe', (done) => {
     // use 'done' for async code
     User.find({ name: 'Joe' }).then((users) => {
+      // Use .toString() because _id property is typeof object
       assert(users[0]._id.toString() === joe._id.toString())
       done()
     })
