@@ -20,7 +20,15 @@ describe('Deleting a user', () => {
       })
   })
 
-  it('class method remove', () => {})
+  it('class method remove', (done) => {
+    // Remove a bunch of records with some given criteria
+    User.deleteOne({ name: 'Joe' }) // remove() depreacated
+      .then(() => User.findOne({ name: 'Joe' }))
+      .then((user) => {
+        assert(user === null)
+        done()
+      })
+  })
 
   it('class method findAndRemove', () => {})
 
