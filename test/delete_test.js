@@ -21,6 +21,7 @@ describe('Deleting a user', () => {
   })
 
   it('class method remove', (done) => {
+    // use 'done' for async code
     // Remove a bunch of records with some given criteria
     User.deleteOne({ name: 'Joe' }) // remove() depreacated
       .then(() => User.findOne({ name: 'Joe' }))
@@ -30,7 +31,23 @@ describe('Deleting a user', () => {
       })
   })
 
-  it('class method findAndRemove', () => {})
+  it('class method findAndRemove', (done) => {
+    // use 'done' for async code
+    User.findOneAndRemove({ name: 'Joe' })
+      .then(() => User.findOne({ name: 'Joe' }))
+      .then((user) => {
+        assert(user === null)
+        done()
+      })
+  })
 
-  it('class method  findByIdAndRemove', () => {})
+  it('class method  findByIdAndRemove', (done) => {
+    // use 'done' for async code
+    User.findByIdAndRemove(joe._id)
+      .then(() => User.findOne({ name: 'Joe' }))
+      .then((user) => {
+        assert(user === null)
+        done()
+      })
+  })
 })
