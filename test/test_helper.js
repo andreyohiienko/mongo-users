@@ -12,7 +12,7 @@ before((done) => {
     .once('open', () => {
       done()
     })
-    .on('error', () => {
+    .on('error', (error) => {
       console.warn('Warning', error)
     })
 })
