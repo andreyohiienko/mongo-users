@@ -11,7 +11,8 @@ const UserSchema = new Schema({
     },
     required: [true, 'Name is required.'],
   },
-  // postCount: Number,
+  // postCount: Number -> deleted because we use virtual property
+  likes: Number,
   posts: [PostSchema],
 })
 
