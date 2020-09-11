@@ -14,6 +14,7 @@ const UserSchema = new Schema({
   // postCount: Number -> deleted because we use virtual property
   likes: Number,
   posts: [PostSchema],
+  blogPosts: [{ type: Schema.Types.ObjectId, ref: 'blogPost' }],
 })
 
 UserSchema.virtual('postCount').get(function () {
