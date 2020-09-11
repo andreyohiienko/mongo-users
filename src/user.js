@@ -28,6 +28,11 @@ UserSchema.virtual('postCount').get(function () {
   return this.posts.length
 })
 
+UserSchema.pre('remove', function () {
+  const BlogPosts = mongoose.model('blogPost')
+  // this === joe
+})
+
 const User = mongoose.model('user', UserSchema)
 
 module.exports = User
