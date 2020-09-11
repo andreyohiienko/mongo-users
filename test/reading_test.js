@@ -12,7 +12,7 @@ describe('Reading users out of the database', () => {
     maria = new User({ name: 'Maria' })
     zach = new User({ name: 'Zach' })
 
-    Promise.all([alex.save(), joe.save(), maria.save(), zach.save()]).then(() =>
+    Promise.all([joe.save(), alex.save(), maria.save(), zach.save()]).then(() =>
       done(),
     )
   })
@@ -34,8 +34,18 @@ describe('Reading users out of the database', () => {
     })
   })
 
-  it('can skip and limit the result set', () => {
+  it('can skip and limit the result set', (done) => {
     // -Alex- [Joe Maria] Zach
-    User.find({}).skip(1).limit(2)
+    User.find({})
+      .sort({ name: 1 })
+      .skip(1)
+      .limit(2)
+      .then((users) => {
+        console.log(users)
+        assert(users.length === 2)
+        assert(users[0].name === 'Joe')
+        assert(users[1].name === 'Maria')
+        done()
+      })
   })
 })
