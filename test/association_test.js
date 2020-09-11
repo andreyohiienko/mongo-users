@@ -13,7 +13,7 @@ describe('Associations', () => {
     })
     comment = new Comment({ content: 'Congrats on great post' })
 
-    joe.blogPost.push(blogPost)
+    joe.blogPosts.push(blogPost)
     blogPost.comments.push(comment)
     comment.user = joe
   })
